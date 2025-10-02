@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aroma: Majestic Taste - Premium Food Products</title>
+    <meta name="description" content="Experience premium coffee and spicy snacks from Aroma: Majestic Taste">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Base Styles */
@@ -26,6 +27,13 @@
             background-color: var(--light);
             color: var(--dark);
             overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         /* Page Loader */
@@ -204,12 +212,6 @@
             z-index: 100;
         }
         
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
         .header-content {
             display: flex;
             justify-content: space-between;
@@ -282,7 +284,7 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(62, 39, 35, 0.8), rgba(62, 39, 35, 0.9)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(62, 39, 35, 0.8), rgba(62, 39, 35, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600"><rect width="1200" height="600" fill="%233E2723"/><circle cx="200" cy="150" r="80" fill="%238B4513" opacity="0.3"/><circle cx="800" cy="400" r="120" fill="%23D2691E" opacity="0.2"/><circle cx="1000" cy="200" r="60" fill="%23FFD700" opacity="0.2"/></svg>');
             background-size: cover;
             background-position: center;
             color: var(--light);
@@ -402,11 +404,20 @@
         }
         
         .coffee-image {
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1587734195503-904fca47e0e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect width="400" height="300" fill="%238B4513"/><circle cx="200" cy="150" r="80" fill="%233E2723"/><ellipse cx="200" cy="80" rx="100" ry="40" fill="%234a2c1a"/></svg>');
         }
         
         .chips-image {
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1566474982192-8bee0788c38c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect width="400" height="300" fill="%23D2691E"/><ellipse cx="150" cy="120" rx="60" ry="30" fill="%23FF8C00" transform="rotate(30 150 120)"/><ellipse cx="250" cy="180" rx="50" ry="25" fill="%23FF4500" transform="rotate(-20 250 180)"/><ellipse cx="200" cy="100" rx="40" ry="20" fill="%23FF6347" transform="rotate(45 200 100)"/></svg>');
+        }
+        
+        .default-image {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
         }
         
         .product-content {
@@ -477,7 +488,7 @@
         .about-image {
             flex: 1;
             height: 400px;
-            background: url('https://images.unsplash.com/photo-1556909114-4d0d853e5e25?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"><rect width="600" height="400" fill="%238B4513"/><circle cx="150" cy="120" r="60" fill="%23D2691E" opacity="0.7"/><circle cx="450" cy="200" r="80" fill="%23FFD700" opacity="0.5"/><rect x="200" y="150" width="200" height="120" fill="%233E2723" opacity="0.8"/></svg>');
             background-size: cover;
             background-position: center;
             border-radius: 15px;
@@ -775,6 +786,32 @@
             .about-image {
                 width: 100%;
             }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .alien-container {
+                transform: scale(0.8);
+            }
         }
     </style>
 </head>
@@ -878,10 +915,10 @@
                     <h3>Majestic Taste</h3>
                     <p>Experience the extraordinary with our premium selection of gourmet food products.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
@@ -910,7 +947,7 @@
 
     <!-- Admin Panel -->
     <div class="admin-panel">
-        <div class="admin-button" id="admin-toggle">
+        <div class="admin-button" id="admin-toggle" aria-label="Admin Panel">
             <i class="fas fa-cog"></i>
         </div>
     </div>
@@ -922,7 +959,7 @@
             <div id="pin-form">
                 <div class="form-group">
                     <label for="admin-pin">Enter PIN Code</label>
-                    <input type="password" id="admin-pin" placeholder="Enter 4-digit PIN">
+                    <input type="password" id="admin-pin" placeholder="Enter 4-digit PIN" maxlength="4">
                 </div>
                 <div class="form-buttons">
                     <button class="btn btn-secondary" id="cancel-pin">Cancel</button>
@@ -944,8 +981,12 @@
                     <input type="text" id="product-price" placeholder="Enter product price">
                 </div>
                 <div class="form-group">
-                    <label for="product-image">Product Image URL</label>
-                    <input type="text" id="product-image" placeholder="Enter image URL">
+                    <label for="product-image">Product Image Type</label>
+                    <select id="product-image">
+                        <option value="coffee-image">Coffee Image</option>
+                        <option value="chips-image">Chips Image</option>
+                        <option value="default-image">Default Image</option>
+                    </select>
                 </div>
                 <div class="form-buttons">
                     <button class="btn btn-secondary" id="cancel-admin">Cancel</button>
@@ -1032,10 +1073,10 @@
                 adminModal.classList.remove('active');
             });
             
-            // Submit pin (simple validation - in real app, this would be secure)
+            // Submit pin (simple validation)
             submitPin.addEventListener('click', () => {
                 const pin = document.getElementById('admin-pin').value;
-                // Simple PIN check - in production, this would be secure
+                // Simple PIN check
                 if (pin === '2024') {
                     pinForm.style.display = 'none';
                     adminInterface.style.display = 'block';
@@ -1053,10 +1094,13 @@
                 adminInterface.style.display = 'none';
                 document.getElementById('admin-pin').value = '';
                 clearProductForm();
+                // Reset button to add mode
+                addProductBtn.textContent = 'Add Product';
+                addProductBtn.onclick = addProductHandler;
             });
             
-            // Add product
-            addProductBtn.addEventListener('click', () => {
+            // Add product handler
+            function addProductHandler() {
                 const name = document.getElementById('product-name').value;
                 const description = document.getElementById('product-description').value;
                 const price = document.getElementById('product-price').value;
@@ -1082,7 +1126,9 @@
                 } else {
                     alert('Please fill in all required fields.');
                 }
-            });
+            }
+            
+            addProductBtn.addEventListener('click', addProductHandler);
             
             // Function to render products on the main page
             function renderProducts() {
@@ -1093,7 +1139,9 @@
                     const productCard = document.createElement('div');
                     productCard.className = 'product-card';
                     productCard.innerHTML = `
-                        <div class="product-image ${product.image}"></div>
+                        <div class="product-image ${product.image}">
+                            ${product.image === 'default-image' ? '<i class="fas fa-box"></i>' : ''}
+                        </div>
                         <div class="product-content">
                             <h3 class="product-title">${product.name}</h3>
                             <p class="product-description">${product.description}</p>
@@ -1154,7 +1202,7 @@
                 document.getElementById('product-name').value = '';
                 document.getElementById('product-description').value = '';
                 document.getElementById('product-price').value = '';
-                document.getElementById('product-image').value = '';
+                document.getElementById('product-image').value = 'coffee-image';
             }
             
             // Function to edit product
@@ -1199,9 +1247,7 @@
                         
                         // Reset button to add mode
                         addProductBtn.textContent = 'Add Product';
-                        addProductBtn.onclick = function() {
-                            addProduct();
-                        };
+                        addProductBtn.onclick = addProductHandler;
                         
                         alert('Product updated successfully!');
                     }
@@ -1222,17 +1268,34 @@
             }
             
             // Smooth scrolling for navigation links
-            document.querySelectorAll('nav a').forEach(anchor => {
+            document.querySelectorAll('nav a, .cta-button').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
                 });
+            });
+            
+            // Close admin modal when clicking outside
+            adminModal.addEventListener('click', function(e) {
+                if (e.target === adminModal) {
+                    adminModal.classList.remove('active');
+                    pinForm.style.display = 'block';
+                    adminInterface.style.display = 'none';
+                    document.getElementById('admin-pin').value = '';
+                    clearProductForm();
+                    addProductBtn.textContent = 'Add Product';
+                    addProductBtn.onclick = addProductHandler;
+                }
             });
         });
     </script>
