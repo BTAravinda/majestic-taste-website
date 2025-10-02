@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroma: Majestic Taste - Premium Food Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #8B4513;
+            --secondary: #D2691E;
+            --accent: #FFD700;
+            --dark: #3E2723;
+            --light: #F5F5DC;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        /* Page Loader */
+        #page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loader-content {
+            text-align: center;
+            color: var(--light);
+        }
+        
+        .loader-bar {
+            width: 300px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin: 30px auto;
+            overflow: hidden;
+        }
+        
+        .loader-progress {
+            height: 100%;
+            width: 0%;
+            background-color: var(--accent);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        
+        .alien-container {
+            position: relative;
+            width: 150px;
+            height: 200px;
+            margin: 0 auto 30px;
+        }
+        
+        .alien-head {
+            width: 100px;
+            height: 120px;
+            background-color: #7CFC00;
+            border-radius: 50% 50% 40% 40%;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            animation: head-bob 2s infinite alternate;
+        }
+        
+        .alien-eyes {
+            display: flex;
+            justify-content: space-around;
+            width: 80px;
+            margin: 30px auto 0;
+        }
+        
+        .alien-eye {
+            width: 25px;
+            height: 35px;
+            background-color: black;
+            border-radius: 50%;
+            position: relative;
+            animation: eye-blink 3s infinite;
+        }
+        
+        .alien-eye::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            top: 5px;
+            left: 5px;
+        }
+        
+        .alien-mouth {
+            width: 40px;
+            height: 10px;
+            background-color: #FF4500;
+            border-radius: 0 0 20px 20px;
+            margin: 15px auto 0;
+        }
+        
+        .alien-body {
+            width: 80px;
+            height: 80px;
+            background-color: #32CD32;
+            border-radius: 30% 30% 0 0;
+            margin: -10px auto 0;
+            position: relative;
+        }
+        
+        .alien-arms {
+            display: flex;
+            justify-content: space-between;
+            width: 120px;
+            margin: 0 auto;
+            position: relative;
+            top: -40px;
+        }
+        
+        .alien-arm {
+            width: 15px;
+            height: 60px;
+            background-color: #32CD32;
+            border-radius: 10px;
+            animation: arm-swing 2s infinite alternate;
+        }
+        
+        .alien-arm.left {
+            transform-origin: top center;
+            animation-delay: 0.5s;
+        }
+        
+        .alien-arm.right {
+            transform-origin: top center;
+        }
+        
+        .alien-legs {
+            display: flex;
+            justify-content: space-between;
+            width: 80px;
+            margin: -30px auto 0;
+        }
+        
+        .alien-leg {
+            width: 15px;
+            height: 50px;
+            background-color: #228B22;
+            border-radius: 0 0 10px 10px;
+            animation: leg-kick 1.5s infinite alternate;
+        }
+        
+        .alien-leg.left {
+            animation-delay: 0.2s;
+        }
+        
+        /* Animations */
+        @keyframes head-bob {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+        
+        @keyframes eye-blink {
+            0%, 90%, 100% { height: 35px; }
+            95% { height: 5px; }
+        }
+        
+        @keyframes arm-swing {
+            0% { transform: rotate(-20deg); }
+            100% { transform: rotate(20deg); }
+        }
+        
+        @keyframes leg-kick {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: var(--light);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            animation: logo-pulse 3s infinite;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            color: var(--accent);
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo-subtext {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-left: 5px;
+        }
+        
+        @keyframes logo-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 25px;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(62, 39, 35, 0.8), rgba(62, 39, 35, 0.9)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--light);
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 20%, rgba(0,0,0,0.7) 100%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fade-up 1s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background-color: #FFE55C;
+        }
+        
+        @keyframes fade-up {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .coffee-image {
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1587734195503-904fca47e0e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .chips-image {
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1566474982192-8bee0788c38c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .product-content {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .product-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .product-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: var(--light);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .about-image {
+            flex: 1;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1556909114-4d0d853e5e25?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Admin Panel */
+        .admin-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .admin-button {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .admin-button:hover {
+            background-color: var(--secondary);
+            transform: scale(1.1);
+        }
+        
+        .admin-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .admin-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .admin-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+        
+        .admin-modal.active .admin-form {
+            transform: translateY(0);
+        }
+        
+        .admin-form h2 {
+            margin-bottom: 20px;
+            color: var(--dark);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary {
+            background-color: #eee;
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #ddd;
+        }
+        
+        /* Products List in Admin */
+        .products-list {
+            margin-top: 30px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .product-item:last-child {
+            border-bottom: none;
+        }
+        
+        .product-item-info h4 {
+            margin-bottom: 5px;
+        }
+        
+        .product-item-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .edit-btn {
+            color: var(--primary);
+        }
+        
+        .delete-btn {
+            color: #e74c3c;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <div class="alien-container">
+                <div class="alien-head">
+                    <div class="alien-eyes">
+                        <div class="alien-eye"></div>
+                        <div class="alien-eye"></div>
+                    </div>
+                    <div class="alien-mouth"></div>
+                </div>
+                <div class="alien-body"></div>
+                <div class="alien-arms">
+                    <div class="alien-arm left"></div>
+                    <div class="alien-arm right"></div>
+                </div>
+                <div class="alien-legs">
+                    <div class="alien-leg left"></div>
+                    <div class="alien-leg right"></div>
+                </div>
+            </div>
+            <h2>Majestic Taste</h2>
+            <p>Loading our premium flavors...</p>
+            <div class="loader-bar">
+                <div class="loader-progress" id="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-mug-hot"></i>
+                    </div>
+                    <div>
+                        <div class="logo-text">Aroma: <span class="logo-subtext">Majestic Taste</span></div>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Experience the Majesty of Flavor</h1>
+                <p>Indulge in our premium selection of gourmet coffee and exotic snacks, crafted to perfection for the discerning palate.</p>
+                <a href="#products" class="cta-button">Explore Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Products</h2>
+            </div>
+            <div class="products-grid" id="products-container">
+                <!-- Products will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>At Aroma: Majestic Taste, we believe that every meal should be an extraordinary experience. Our journey began with a simple mission: to bring the most exquisite flavors from around the world to your table.</p>
+                    <p>We source only the finest ingredients and employ traditional techniques combined with innovative approaches to create products that delight the senses and elevate everyday moments.</p>
+                    <p>From our carefully selected coffee beans to our uniquely spiced snacks, each product is a testament to our commitment to quality and flavor excellence.</p>
+                </div>
+                <div class="about-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Majestic Taste</h3>
+                    <p>Experience the extraordinary with our premium selection of gourmet food products.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Flavor Street, Taste City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@majestictaste.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Aroma: Majestic Taste. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel">
+        <div class="admin-button" id="admin-toggle">
+            <i class="fas fa-cog"></i>
+        </div>
+    </div>
+
+    <!-- Admin Modal -->
+    <div class="admin-modal" id="admin-modal">
+        <div class="admin-form">
+            <h2>Admin Panel</h2>
+            <div id="pin-form">
+                <div class="form-group">
+                    <label for="admin-pin">Enter PIN Code</label>
+                    <input type="password" id="admin-pin" placeholder="Enter 4-digit PIN">
+                </div>
+                <div class="form-buttons">
+                    <button class="btn btn-secondary" id="cancel-pin">Cancel</button>
+                    <button class="btn btn-primary" id="submit-pin">Submit</button>
+                </div>
+            </div>
+            
+            <div id="admin-interface" style="display: none;">
+                <div class="form-group">
+                    <label for="product-name">Product Name</label>
+                    <input type="text" id="product-name" placeholder="Enter product name">
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Product Description</label>
+                    <textarea id="product-description" placeholder="Enter product description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="product-price">Product Price</label>
+                    <input type="text" id="product-price" placeholder="Enter product price">
+                </div>
+                <div class="form-group">
+                    <label for="product-image">Product Image URL</label>
+                    <input type="text" id="product-image" placeholder="Enter image URL">
+                </div>
+                <div class="form-buttons">
+                    <button class="btn btn-secondary" id="cancel-admin">Cancel</button>
+                    <button class="btn btn-primary" id="add-product">Add Product</button>
+                </div>
+                
+                <div class="products-list" id="admin-products-list">
+                    <h3>Existing Products</h3>
+                    <!-- Products will be listed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Page Loader
+        document.addEventListener('DOMContentLoaded', function() {
+            const loader = document.getElementById('page-loader');
+            const progressBar = document.getElementById('loader-progress');
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    setTimeout(() => {
+                        loader.style.opacity = '0';
+                        setTimeout(() => {
+                            loader.style.display = 'none';
+                        }, 500);
+                    }, 500);
+                }
+                progressBar.style.width = `${progress}%`;
+            }, 200);
+            
+            // Initialize with default products
+            const defaultProducts = [
+                {
+                    id: 1,
+                    name: "Premium Coffee Powder",
+                    description: "50g of our finest Arabica coffee beans, carefully roasted and ground to perfection for a rich and aromatic experience.",
+                    price: "$12.99",
+                    image: "coffee-image"
+                },
+                {
+                    id: 2,
+                    name: "Spicy Loco Chips",
+                    description: "100g box of our signature spicy chips with a unique blend of exotic spices that will tantalize your taste buds.",
+                    price: "$8.99",
+                    image: "chips-image"
+                }
+            ];
+            
+            // Load products from localStorage or use defaults
+            let products = JSON.parse(localStorage.getItem('majesticProducts')) || defaultProducts;
+            
+            // Save default products if not already in localStorage
+            if (!localStorage.getItem('majesticProducts')) {
+                localStorage.setItem('majesticProducts', JSON.stringify(defaultProducts));
+            }
+            
+            // Render products
+            renderProducts();
+            
+            // Admin Panel Functionality
+            const adminToggle = document.getElementById('admin-toggle');
+            const adminModal = document.getElementById('admin-modal');
+            const cancelPin = document.getElementById('cancel-pin');
+            const submitPin = document.getElementById('submit-pin');
+            const pinForm = document.getElementById('pin-form');
+            const adminInterface = document.getElementById('admin-interface');
+            const cancelAdmin = document.getElementById('cancel-admin');
+            const addProductBtn = document.getElementById('add-product');
+            
+            // Toggle admin modal
+            adminToggle.addEventListener('click', () => {
+                adminModal.classList.add('active');
+            });
+            
+            // Cancel pin entry
+            cancelPin.addEventListener('click', () => {
+                adminModal.classList.remove('active');
+            });
+            
+            // Submit pin (simple validation - in real app, this would be secure)
+            submitPin.addEventListener('click', () => {
+                const pin = document.getElementById('admin-pin').value;
+                // Simple PIN check - in production, this would be secure
+                if (pin === '2024') {
+                    pinForm.style.display = 'none';
+                    adminInterface.style.display = 'block';
+                    loadAdminProducts();
+                } else {
+                    alert('Incorrect PIN! Try again.');
+                }
+            });
+            
+            // Cancel admin
+            cancelAdmin.addEventListener('click', () => {
+                adminModal.classList.remove('active');
+                // Reset forms
+                pinForm.style.display = 'block';
+                adminInterface.style.display = 'none';
+                document.getElementById('admin-pin').value = '';
+                clearProductForm();
+            });
+            
+            // Add product
+            addProductBtn.addEventListener('click', () => {
+                const name = document.getElementById('product-name').value;
+                const description = document.getElementById('product-description').value;
+                const price = document.getElementById('product-price').value;
+                const image = document.getElementById('product-image').value;
+                
+                if (name && description && price) {
+                    const newProduct = {
+                        id: Date.now(), // Simple ID generation
+                        name,
+                        description,
+                        price,
+                        image: image || 'default-image'
+                    };
+                    
+                    products.push(newProduct);
+                    localStorage.setItem('majesticProducts', JSON.stringify(products));
+                    
+                    renderProducts();
+                    loadAdminProducts();
+                    clearProductForm();
+                    
+                    alert('Product added successfully!');
+                } else {
+                    alert('Please fill in all required fields.');
+                }
+            });
+            
+            // Function to render products on the main page
+            function renderProducts() {
+                const container = document.getElementById('products-container');
+                container.innerHTML = '';
+                
+                products.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    productCard.innerHTML = `
+                        <div class="product-image ${product.image}"></div>
+                        <div class="product-content">
+                            <h3 class="product-title">${product.name}</h3>
+                            <p class="product-description">${product.description}</p>
+                            <div class="product-price">${product.price}</div>
+                            <a href="#" class="product-button">Add to Cart</a>
+                        </div>
+                    `;
+                    container.appendChild(productCard);
+                });
+            }
+            
+            // Function to load products in admin panel
+            function loadAdminProducts() {
+                const adminList = document.getElementById('admin-products-list');
+                // Clear existing items except the title
+                const title = adminList.querySelector('h3');
+                adminList.innerHTML = '';
+                adminList.appendChild(title);
+                
+                products.forEach(product => {
+                    const productItem = document.createElement('div');
+                    productItem.className = 'product-item';
+                    productItem.innerHTML = `
+                        <div class="product-item-info">
+                            <h4>${product.name}</h4>
+                            <p>${product.price}</p>
+                        </div>
+                        <div class="product-item-actions">
+                            <button class="action-btn edit-btn" data-id="${product.id}">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn delete-btn" data-id="${product.id}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                    adminList.appendChild(productItem);
+                });
+                
+                // Add event listeners for edit and delete buttons
+                document.querySelectorAll('.edit-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const productId = parseInt(this.getAttribute('data-id'));
+                        editProduct(productId);
+                    });
+                });
+                
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const productId = parseInt(this.getAttribute('data-id'));
+                        deleteProduct(productId);
+                    });
+                });
+            }
+            
+            // Function to clear product form
+            function clearProductForm() {
+                document.getElementById('product-name').value = '';
+                document.getElementById('product-description').value = '';
+                document.getElementById('product-price').value = '';
+                document.getElementById('product-image').value = '';
+            }
+            
+            // Function to edit product
+            function editProduct(id) {
+                const product = products.find(p => p.id === id);
+                if (product) {
+                    document.getElementById('product-name').value = product.name;
+                    document.getElementById('product-description').value = product.description;
+                    document.getElementById('product-price').value = product.price;
+                    document.getElementById('product-image').value = product.image;
+                    
+                    // Change add button to update
+                    addProductBtn.textContent = 'Update Product';
+                    addProductBtn.onclick = function() {
+                        updateProduct(id);
+                    };
+                }
+            }
+            
+            // Function to update product
+            function updateProduct(id) {
+                const name = document.getElementById('product-name').value;
+                const description = document.getElementById('product-description').value;
+                const price = document.getElementById('product-price').value;
+                const image = document.getElementById('product-image').value;
+                
+                if (name && description && price) {
+                    const index = products.findIndex(p => p.id === id);
+                    if (index !== -1) {
+                        products[index] = {
+                            id,
+                            name,
+                            description,
+                            price,
+                            image: image || 'default-image'
+                        };
+                        
+                        localStorage.setItem('majesticProducts', JSON.stringify(products));
+                        renderProducts();
+                        loadAdminProducts();
+                        clearProductForm();
+                        
+                        // Reset button to add mode
+                        addProductBtn.textContent = 'Add Product';
+                        addProductBtn.onclick = function() {
+                            addProduct();
+                        };
+                        
+                        alert('Product updated successfully!');
+                    }
+                } else {
+                    alert('Please fill in all required fields.');
+                }
+            }
+            
+            // Function to delete product
+            function deleteProduct(id) {
+                if (confirm('Are you sure you want to delete this product?')) {
+                    products = products.filter(p => p.id !== id);
+                    localStorage.setItem('majesticProducts', JSON.stringify(products));
+                    renderProducts();
+                    loadAdminProducts();
+                    alert('Product deleted successfully!');
+                }
+            }
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
